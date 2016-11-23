@@ -1,0 +1,32 @@
+{
+  "name": "js-fetch",
+  "version": "0.1.0",
+  "description": "FetchJS from CDN",
+  "main": "dist/js-fetch.min.js",
+  "scripts": {
+    "start": "nodemon src/index.js --exec babel-node",
+    "build": "babel src/js-fetch.js -o dist/js-fetch.min.js --presets babili -s"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-uglify": "^1.0.2",
+    "babel-preset-babili": "^0.0.9",
+    "babel-preset-latest": "^6.16.0",
+    "nodemon": "^1.11.0"
+  },
+  "author": "tronghiep92 <tronghiep92@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tronghiep92/js-fetch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tronghiep92/js-fetch/issues"
+  },
+  "homepage": "http://nghiepit.pro",
+  "keywords": [
+    "fetch js",
+    "script loader"
+  ],
+  "license": "MIT"
+}
