@@ -1,3 +1,5 @@
+import { retry } from 'async';
+
 const urls = [];
 
 export default function(url, waitVar) {
@@ -17,14 +19,19 @@ export default function(url, waitVar) {
         document.body.appendChild(el);
         urls.push(url);
       } else {
-        if (window[waitVar]) {
-          resolve(window[waitVar]);
-        } {
-          reject(new Error('Cannot find ' + window[waitVar]));
-        }
+        retry({ times: Number.MAX_SAFE_INTEGER }, (callback) => {
+          if (window[waitVar]) {
+            callback(null, window[waitVar]);
+          } else {
+            callback(new Error('Cannot found variable ' + waitVar));
+          }
+        }, (err, result) => {
+          err && reject(err);
+          resolve(result);
+        });
       }
     } else {
-      reject(new Error('Cannot run in environment SSR!'));
+      reject(new Error('This package is not called during SSR.'));
     }
   });
 }

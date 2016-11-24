@@ -1,6 +1,6 @@
 {
   "name": "js-fetch",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "FetchJS from CDN",
   "main": "dist/js-fetch.min.js",
   "scripts": {
@@ -28,5 +28,8 @@
     "fetch js",
     "script loader"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.1.4"
+  }
 }

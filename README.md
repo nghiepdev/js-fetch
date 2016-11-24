@@ -1,5 +1,5 @@
 # JS-FETCH
-Simple load library JS from CDN and reture Promise.
+Simple load library JS from CDN and reture global varibale.
 
 ## Install
 `npm install js-fetch -S`
@@ -7,8 +7,8 @@ Simple load library JS from CDN and reture Promise.
 ## Usage
 Example using in React, Vue,...
 ```
-import JSFetch from 'js-fetch';
-JSFetch('https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY', 'google').then(google => {
+import jsFetch from 'js-fetch';
+jsFetch('https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY', 'google').then(google => {
   new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
     zoom: 8
