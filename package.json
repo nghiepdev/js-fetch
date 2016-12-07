@@ -1,19 +1,16 @@
 {
   "name": "js-fetch",
-  "version": "0.1.2",
-  "description": "FetchJS from CDN",
+  "version": "1.0.1",
+  "description": "Fetch JS from CDN",
   "main": "dist/js-fetch.min.js",
   "scripts": {
-    "start": "nodemon src/index.js --exec babel-node",
-    "build": "babel src/js-fetch.js -o dist/js-fetch.min.js --presets babili -s"
+    "build": "BABEL_ENV=production && babel src/js-fetch.js -o dist/js-fetch.min.js -s"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-uglify": "^1.0.2",
     "babel-preset-babili": "^0.0.9",
-    "babel-preset-latest": "^6.16.0",
-    "nodemon": "^1.11.0"
+    "babel-preset-latest": "^6.16.0"
   },
   "author": "tronghiep92 <tronghiep92@gmail.com>",
   "repository": {
@@ -26,7 +23,8 @@
   "homepage": "http://nghiepit.pro",
   "keywords": [
     "fetch js",
-    "script loader"
+    "script loader",
+    "cdn"
   ],
   "license": "MIT",
   "dependencies": {

@@ -1,5 +1,5 @@
 {
-  "presets": ["latest"],
+  "presets": ["latest", "babili"],
   "plugins": [
     "add-module-exports"
   ]

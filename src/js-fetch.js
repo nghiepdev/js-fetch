@@ -14,21 +14,28 @@ export default function(url, waitVar) {
             el.remove();
             reject(err);
           }
-          resolve(window[waitVar]);
+          if (waitVar) {
+            resolve(window[waitVar]);
+          }
+          resolve();
         };
         document.body.appendChild(el);
         urls.push(url);
       } else {
-        retry({ times: Number.MAX_SAFE_INTEGER }, (callback) => {
-          if (window[waitVar]) {
-            callback(null, window[waitVar]);
-          } else {
-            callback(new Error('Cannot found variable ' + waitVar));
-          }
-        }, (err, result) => {
-          err && reject(err);
-          resolve(result);
-        });
+        if (waitVar) {
+          retry({ times: Number.MAX_SAFE_INTEGER }, callback => {
+            if (window[waitVar]) {
+              callback(null, window[waitVar]);
+            } else {
+              callback(new Error('Cannot found variable ' + waitVar));
+            }
+          }, (err, result) => {
+            err && reject(err);
+            resolve(result);
+          });
+        } else {
+          resolve();
+        }
       }
     } else {
       reject(new Error('This package is not called during SSR.'));
