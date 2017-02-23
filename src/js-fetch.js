@@ -2,13 +2,19 @@ import { retry } from 'async';
 
 const urls = [];
 
-export default function(url, waitVar) {
+export default function(url, waitVar, attributes = {}) {
   return new Promise((resolve, reject) => {
     if (typeof document !== 'undefined') {
       if (!urls.includes(url)) {
         const el = document.createElement('script');
         el.async = true;
-        el.src = url;
+        
+        if (typeof attributes === 'object' && !Array.isArray(attributes)) {
+          for(const i in attributes) {
+            el[i] = attributes[i];
+          }
+        }
+        
         el.onerror = el.onload = err => {
           if (err && err.type === 'error') {
             el.remove();
