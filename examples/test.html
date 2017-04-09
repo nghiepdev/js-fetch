@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test jsFetch</title>
+	<script src="//unpkg.com/js-fetch@1.1.0/dist/js-fetch.min.js"></script>
+</head>
+<body>
+	<div id="map" style="width: 100%;height: 400px"></div>
+	<script>
+		jsFetch('//maps.googleapis.com/maps/api/js?key=AIzaSyAyWnfCUjOWe6kaZzw5ZGp8Ys6UB_qjvw8', 'google').then(google => {
+		  new google.maps.Map(document.querySelector('#map'), {
+		    center: {lat: -34.397, lng: 150.644},
+		    zoom: 8
+		  });
+		}).catch(err => {
+		  throw err;
+		});
+	</script>
+</body>
+</html>
