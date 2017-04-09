@@ -1,26 +1,85 @@
 # JS-FETCH
-Simple load library JS from CDN and return global varibale.
+Simple load external javascript library.
+
+## Features
+- Only load once in the project
+- Support Promise
+- Support in browser
 
 ## Install
-`npm install js-fetch -S`
+```sh
+npm install js-fetch -S
+```
 
 ## Usage
-Example using in React, Vue,...
-```javascript
-import jsFetch from 'js-fetch';
-jsFetch('https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY', 'google').then(google => {
-  new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
+`jsFetch(CDNPath [, variable = null, [, attributes = {}, [, timeout = 15000]]])`
+
+## Examples
+### In browser
+```html
+<script src="//unpkg.com/js-fetch@1.1.0/dist/js-fetch.min.js"></script>
+<div id="map" style="width: 100%; height: 400px"></div>
+```
+```js
+jsFetch('//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY', 'google', { async: true, id: 'abc' }, 5000).then(function(google) {
+  new google.maps.Map(document.querySelector('#map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+    });
   });
-}).catch(err => {
+}).catch(function(err) {
   throw err;
 });
 ```
 
-## Features
-- Just one load fist CDN if it loaded.
-- Support global varibale
+---
+
+### In Vue
+```js
+import jsFetch from 'js-fetch';
+
+new Vue({
+  template: `
+  <div>
+    <div ref="map" style="width: 100%; height: 400px"></div>
+  </div>`,
+  mounted() {
+    jsFetch('//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY', 'google').then(google => {
+      new google.maps.Map(this.$refs.map, {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 8
+      });
+    }).catch(err => {
+      throw err;
+    });
+  }
+})
+```
+### In React
+```js
+import jsFetch from 'js-fetch';
+
+class App extends Component {
+  componentDidMount() {
+    jsFetch('//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY', 'google').then(google => {
+      new google.maps.Map(this.map, {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 8
+      });
+    }).catch(err => {
+      throw err;
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <div style={{width:'100%', height: '400px'}} ref={map => { this.map = map; }}></div>
+      </div>
+    );
+  }
+}
+```
 
 ## License
 MIT © [Nghiệp](http://nghiepit.pro)

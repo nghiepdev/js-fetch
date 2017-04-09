@@ -1,51 +1,64 @@
-const urls = [];
+/*!
+ * jsFetch v1.1.0
+ * (c) Nghiep<me@nghiepit.pro>
+ * MIT License.
+ */
 
-export default function(url, waitVar, attributes = {}, timeout = 5000) {
-  return new Promise((resolve, reject) => {
-    if (typeof document !== 'undefined') {
-      if (!urls.includes(url)) {
-        const el = document.createElement('script');
-        el.src = url;
-        
-        if (typeof attributes === 'object' && !Array.isArray(attributes)) {
-          for(const i in attributes) {
-            el[i] = attributes[i];
-          }
-        }
-        
-        el.onerror = el.onload = err => {
-          if (err && err.type === 'error') {
-            el.remove();
-            reject(err);
-          }
-          if (waitVar) {
-            resolve(window[waitVar]);
-          }
-          resolve();
-        };
+((global, factory) => {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  global ? global.jsFetch = factory() :
+  window && (window.jsFetch = factory());
+})(this, () => {
+  const urls = [];
 
-        document.body.appendChild(el);
-        urls.push(url);
-      } else {
-        if (waitVar) {
-          const timerInterval = setInterval(() => {
-            if (window[waitVar]) {
-              clearInterval(timerInterval);
+  return function(url, waitVar, attributes = {}, timeout = 15000) {
+    return new Promise((resolve, reject) => {
+      if (typeof document !== 'undefined') {
+        if (!urls.includes(url)) {
+          const el = document.createElement('script');
+          el.src = url;
+          
+          if (typeof attributes === 'object' && !Array.isArray(attributes)) {
+            for(const i in attributes) {
+              el[i] = attributes[i];
+            }
+          }
+          
+          el.onerror = el.onload = err => {
+            if (err && err.type === 'error') {
+              el.remove();
+              reject(err);
+            }
+            if (waitVar) {
               resolve(window[waitVar]);
             }
-          }, 500);
+            resolve();
+          };
 
-          setTimeout(() => {
-            clearInterval(timerInterval);
-            reject('Cannot found variable ' + waitVar);
-          }, timeout);
-
+          document.body.appendChild(el);
+          urls.push(url);
         } else {
-          resolve();
+          if (waitVar) {
+            const timerInterval = setInterval(() => {
+              if (window[waitVar]) {
+                clearInterval(timerInterval);
+                resolve(window[waitVar]);
+              }
+            }, 500);
+
+            setTimeout(() => {
+              clearInterval(timerInterval);
+              reject('Cannot found variable ' + waitVar);
+            }, timeout);
+
+          } else {
+            resolve();
+          }
         }
+      } else {
+        reject(new Error('This package is not called during SSR.'));
       }
-    } else {
-      reject(new Error('This package is not called during SSR.'));
-    }
-  });
-}
+    });
+  }
+});

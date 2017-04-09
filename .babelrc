@@ -1,5 +1,10 @@
 {
-  "presets": ["latest", "babili"],
+  "presets": ["env"],
+  "env": {
+    "production": {
+      "presets": ["babili"]
+    }
+  },
   "plugins": [
     "add-module-exports"
   ]
