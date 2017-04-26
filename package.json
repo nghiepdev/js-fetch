@@ -1,12 +1,12 @@
 {
   "name": "js-fetch",
-  "version": "1.1.0",
-  "description": "Fetch JS from CDN",
+  "version": "1.1.2",
+  "description": "Simple load external javascript library.",
   "main": "dist/js-fetch.min.js",
   "scripts": {
     "dev": "watch 'npm run build' src",
-    "build": "babel src -d dist",
-    "build:prod": "cross-env NODE_ENV=production babel src/js-fetch.js -o dist/js-fetch.min.js -s"
+    "build": "babel index.js -o dist/js-fetch.js",
+    "build:prod": "cross-env NODE_ENV=production babel index.js -o dist/js-fetch.min.js -s"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -28,7 +28,8 @@
   "keywords": [
     "fetch js",
     "script loader",
-    "cdn"
+    "cdn",
+    "external"
   ],
   "license": "MIT"
 }

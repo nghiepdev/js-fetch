@@ -1,18 +1,13 @@
 /*!
- * jsFetch v1.1.0
+ * jsFetch v1.1.2
  * (c) Nghiep<me@nghiepit.pro>
  * MIT License.
  */
 
-((global, factory) => {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  global ? global.jsFetch = factory() :
-  window && (window.jsFetch = factory());
-})(this, () => {
+(() => {
   const urls = [];
 
-  return function(url, waitVar, attributes = {}, timeout = 15000) {
+  const jsFetch = (url, waitVar, attributes = {}, timeout = 15000) => {
     return new Promise((resolve, reject) => {
       if (typeof document !== 'undefined') {
         if (!urls.includes(url)) {
@@ -61,4 +56,12 @@
       }
     });
   }
-});
+
+  if(typeof exports === 'object' && typeof module === 'object') {
+    module.exports = jsFetch;
+  } else if(typeof define === 'function' && define.amd) {
+    define(() =>  jsFetch);
+  } else if (typeof window !== 'undefined') {
+    window.jsFetch = jsFetch;
+  }
+})();

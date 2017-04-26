@@ -3,17 +3,15 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /*!
- * jsFetch v1.1.0
+ * jsFetch v1.1.2
  * (c) Nghiep<me@nghiepit.pro>
  * MIT License.
  */
 
-(function (global, factory) {
-  (typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global ? global.jsFetch = factory() : window && (window.jsFetch = factory());
-})(undefined, function () {
+(function () {
   var urls = [];
 
-  return function (url, waitVar) {
+  var jsFetch = function jsFetch(url, waitVar) {
     var attributes = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
     var timeout = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 15000;
 
@@ -64,4 +62,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       }
     });
   };
-});
+
+  if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object' && (typeof module === 'undefined' ? 'undefined' : _typeof(module)) === 'object') {
+    module.exports = jsFetch;
+  } else if (typeof define === 'function' && define.amd) {
+    define(function () {
+      return jsFetch;
+    });
+  } else if (typeof window !== 'undefined') {
+    window.jsFetch = jsFetch;
+  }
+})();

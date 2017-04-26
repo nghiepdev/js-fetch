@@ -4,7 +4,6 @@ Simple load external javascript library.
 ## Features
 - Only load once in the project
 - Support Promise
-- Support in browser
 
 ## Install
 ```sh
@@ -15,9 +14,9 @@ npm install js-fetch -S
 `jsFetch(CDNPath [, variable = null, [, attributes = {}, [, timeout = 15000]]])`
 
 ## Examples
-### In browser
+### CDN
 ```html
-<script src="//unpkg.com/js-fetch@1.1.0/dist/js-fetch.min.js"></script>
+<script src="//unpkg.com/js-fetch@1.1.2/dist/js-fetch.min.js"></script>
 <div id="map" style="width: 100%; height: 400px"></div>
 ```
 ```js
@@ -28,7 +27,7 @@ jsFetch('//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY', 'google', { async:
     });
   });
 }).catch(function(err) {
-  throw err;
+  // throw err;
 });
 ```
 
@@ -38,7 +37,7 @@ jsFetch('//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY', 'google', { async:
 ```js
 import jsFetch from 'js-fetch';
 
-new Vue({
+Vue.component('my-component', {
   template: `
   <div>
     <div ref="map" style="width: 100%; height: 400px"></div>
@@ -50,7 +49,7 @@ new Vue({
         zoom: 8
       });
     }).catch(err => {
-      throw err;
+      // throw err;
     });
   }
 })
@@ -67,7 +66,7 @@ class App extends Component {
         zoom: 8
       });
     }).catch(err => {
-      throw err;
+      // throw err;
     });
   }
 
