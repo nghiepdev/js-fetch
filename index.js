@@ -1,9 +1,3 @@
-/*!
- * jsFetch v1.1.2
- * (c) Nghiep<me@nghiepit.pro>
- * MIT License.
- */
-
 (() => {
   const urls = [];
 
@@ -13,13 +7,13 @@
         if (!urls.includes(url)) {
           const el = document.createElement('script');
           el.src = url;
-          
+
           if (typeof attributes === 'object' && !Array.isArray(attributes)) {
-            for(const i in attributes) {
+            for (const i in attributes) {
               el[i] = attributes[i];
             }
           }
-          
+
           el.onerror = el.onload = err => {
             if (err && err.type === 'error') {
               el.remove();
@@ -46,7 +40,6 @@
               clearInterval(timerInterval);
               reject('Cannot found variable ' + waitVar);
             }, timeout);
-
           } else {
             resolve();
           }
@@ -55,12 +48,12 @@
         reject(new Error('This package is not called during SSR.'));
       }
     });
-  }
+  };
 
-  if(typeof exports === 'object' && typeof module === 'object') {
+  if (typeof exports === 'object' && typeof module === 'object') {
     module.exports = jsFetch;
-  } else if(typeof define === 'function' && define.amd) {
-    define(() =>  jsFetch);
+  } else if (typeof define === 'function' && define.amd) {
+    define(() => jsFetch);
   } else if (typeof window !== 'undefined') {
     window.jsFetch = jsFetch;
   }

@@ -1,8 +1,11 @@
 # JS-FETCH
-Simple load external javascript library.
+Dynamic load javascript client such as GG client API, FB client API
+
+[![NPM version](https://img.shields.io/npm/v/js-fetch.svg)](https://www.npmjs.com/package/js-fetch)
+[![NPM monthly download](https://img.shields.io/npm/dm/js-fetch.svg)](https://www.npmjs.com/package/js-fetch)
 
 ## Features
-- Only load once in the project
+- Just load once in your project
 - Support Promise
 
 ## Install
@@ -11,12 +14,12 @@ npm install js-fetch -S
 ```
 
 ## Usage
-`jsFetch(CDNPath [, variable = null, [, attributes = {}, [, timeout = 15000]]])`
+`jsFetch(CDNPath [, variable = null [, attributes = {} [, timeout = 15000]]])`
 
 ## Examples
 ### CDN
 ```html
-<script src="//unpkg.com/js-fetch@1.1.2/dist/js-fetch.min.js"></script>
+<script src="//unpkg.com/js-fetch"></script>
 <div id="map" style="width: 100%; height: 400px"></div>
 ```
 ```js
