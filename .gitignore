@@ -1,4 +1,6 @@
 node_modules
 .DS_Store
 npm-debug.log
+index.min.js
+index.min.js.map
 /*.tgz

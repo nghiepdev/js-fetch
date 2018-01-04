@@ -45,7 +45,7 @@
           }
         }
       } else {
-        reject(new Error('This package is not called during SSR.'));
+        reject(new Error('This package is not use during SSR.'));
       }
     });
   };
