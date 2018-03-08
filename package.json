@@ -1,28 +1,34 @@
 {
   "name": "js-fetch",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description":
     "Dynamic load one times javascript client such as GG, FB client API",
   "files": ["index.min.js", "index.min.js.map"],
   "main": "index.min.js",
   "scripts": {
-    "lib": "cross-env NODE_ENV=production babel index.js -o index.min.js -s",
+    "dev": "cross-env NODE_ENV=development webpack",
+    "lib": "cross-env NODE_ENV=production webpack",
     "prepublish": "npm run lib"
   },
+  "dependencies": {
+    "core-js": "^2.5.3"
+  },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-preset-babili": "^0.1.4",
-    "babel-preset-env": "^1.6.0",
-    "cross-env": "^5.0.1",
-    "watch": "^1.0.2"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.3",
+    "watch": "^1.0.2",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.10"
   },
   "author": "Nghiep <me@nghiepit.pro>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tronghiep92/js-fetch.git"
+    "url": "git+https://github.com/nghiepit/js-fetch.git"
   },
   "bugs": {
-    "url": "https://github.com/tronghiep92/js-fetch/issues"
+    "url": "https://github.com/nghiepit/js-fetch/issues"
   },
   "homepage": "http://nghiepit.pro",
   "keywords": ["fetch js", "script loader", "cdn", "external", "scriptjs"],
