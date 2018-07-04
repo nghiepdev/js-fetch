@@ -27,7 +27,7 @@ const jsFetch = (url, waitVar, attributes = {}, timeout = 15000) => {
         document.body.appendChild(el);
         urls.push(url);
       } else {
-        waitVarValue = deepObjectWindow(waitVar);
+        const waitVarValue = deepObjectWindow(waitVar);
 
         if (waitVarValue) {
           const timerInterval = setInterval(() => {
