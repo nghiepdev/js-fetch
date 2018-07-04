@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "js-fetch": "^1.1.0",
+    "js-fetch": "../../",
     "react": "^15.5.3",
     "react-dom": "^15.5.3"
   },

@@ -1,14 +1,14 @@
 # JS-FETCH
 
-Dynamic load one times javascript client such as GG, FB client API
+Asyncronous JavaScript loader for client such as Google Map API, Twitter widget,...
 
 [![NPM version](https://img.shields.io/npm/v/js-fetch.svg)](https://www.npmjs.com/package/js-fetch)
 [![NPM monthly download](https://img.shields.io/npm/dm/js-fetch.svg)](https://www.npmjs.com/package/js-fetch)
 
 ## Features
 
-* Load one times in your project
-* Return Promise
+- Just load one times in your project
+- Return Promise
 
 ## Installation
 
@@ -18,7 +18,15 @@ yarn add js-fetch
 
 ## Usage
 
-`jsFetch(CDNPath [, variable = null [, attributes = {} [, timeout = 15000]]])`
+```
+  jsFetch(CDNPath [, variablePath = null [, attributes = {} [, timeout = 15000]]])
+
+  positional arguments:
+    CDNPath           url path(ex: https://maps.googleapis.com/maps/api/js)
+    variablePath      variable global support path string (ex: 'google', 'google.maps.Map')
+    attributes        attributes in script tag (ex: {async: true})
+    timeout           timeout for waiting load CDNPath
+```
 
 ## Examples
 
@@ -54,10 +62,13 @@ Vue.component('my-component', {
     <div ref="map" style="width: 100%; height: 400px"></div>
   </div>`,
   mounted() {
-    jsFetch('//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY', 'google')
-      .then(google => {
-        new google.maps.Map(this.$refs.map, {
-          center: { lat: -34.397, lng: 150.644 },
+    jsFetch(
+      '//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY',
+      'google.maps.Map',
+    )
+      .then(Map => {
+        new Map(this.$refs.map, {
+          center: {lat: -34.397, lng: 150.644},
           zoom: 8,
         });
       })
@@ -78,7 +89,7 @@ class App extends Component {
     jsFetch('//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY', 'google')
       .then(google => {
         new google.maps.Map(this.map, {
-          center: { lat: -34.397, lng: 150.644 },
+          center: {lat: -34.397, lng: 150.644},
           zoom: 8,
         });
       })
@@ -91,7 +102,7 @@ class App extends Component {
     return (
       <div className="App">
         <div
-          style={{ width: '100%', height: '400px' }}
+          style={{width: '100%', height: '400px'}}
           ref={map => {
             this.map = map;
           }}
@@ -104,4 +115,4 @@ class App extends Component {
 
 ## License
 
-MIT © [Nghiệp](http://nghiepit.pro)
+MIT © [Nghiệp](https://nghiepit.pro)
