@@ -1,14 +1,9 @@
 # JS-FETCH
 
-Asyncronous JavaScript loader for client such as Google Map API, Twitter widget,...
+Asynchronous JavaScript loader for client such as Google Map API, Twitter widget,...
 
 [![NPM version](https://img.shields.io/npm/v/js-fetch.svg)](https://www.npmjs.com/package/js-fetch)
-[![NPM monthly download](https://img.shields.io/npm/dm/js-fetch.svg)](https://www.npmjs.com/package/js-fetch)
-
-## Features
-
-- Just load one times in your project
-- Return Promise
+[![NPM yearly download](https://img.shields.io/npm/dy/js-fetch.svg)](https://www.npmjs.com/package/js-fetch)
 
 ## Installation
 
@@ -115,4 +110,4 @@ class App extends Component {
 
 ## License
 
-MIT © [Nghiệp](https://nghiepit.pro)
+MIT © [Nghiep](https://nghiepit.dev)

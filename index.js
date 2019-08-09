@@ -1,4 +1,5 @@
-const deepObjectWindow = pathString => eval(`window.${pathString}`);
+const deepObjectWindow = pathString =>
+  pathString && eval(`window.${pathString}`);
 
 const urls = [];
 
